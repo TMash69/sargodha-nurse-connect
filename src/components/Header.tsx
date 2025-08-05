@@ -1,0 +1,145 @@
+import { useState } from "react";
+import { Menu, X, ChevronDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+
+  const navigation = [
+    { name: "Home", href: "#home" },
+    {
+      name: "About",
+      href: "#about",
+      dropdown: [
+        { name: "Our Story", href: "#story" },
+        { name: "Mission & Vision", href: "#mission" },
+        { name: "Leadership", href: "#leadership" },
+      ],
+    },
+    {
+      name: "Courses",
+      href: "#courses",
+      dropdown: [
+        { name: "General Nursing", href: "#general-nursing" },
+        { name: "BSN Program", href: "#bsn" },
+        { name: "Post-RN BSN", href: "#post-rn" },
+      ],
+    },
+    { name: "Faculty", href: "#faculty" },
+    { name: "Campus Life", href: "#campus" },
+    { name: "Admissions", href: "#admissions" },
+    { name: "Contact", href: "#contact" },
+  ];
+
+  return (
+    <header className="bg-background/95 backdrop-blur-sm border-b border-border sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <div className="flex items-center space-x-3">
+            <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center">
+              <span className="text-primary-foreground font-bold text-lg">CNS</span>
+            </div>
+            <div className="hidden sm:block">
+              <h1 className="text-xl font-bold text-primary">College of Nursing</h1>
+              <p className="text-sm text-muted-foreground">Sargodha</p>
+            </div>
+          </div>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center space-x-8">
+            {navigation.map((item) => (
+              <div
+                key={item.name}
+                className="relative"
+                onMouseEnter={() => item.dropdown && setActiveDropdown(item.name)}
+                onMouseLeave={() => setActiveDropdown(null)}
+              >
+                <a
+                  href={item.href}
+                  className="flex items-center space-x-1 text-foreground hover:text-primary transition-colors duration-200 py-2"
+                >
+                  <span>{item.name}</span>
+                  {item.dropdown && <ChevronDown className="w-4 h-4" />}
+                </a>
+                
+                {item.dropdown && activeDropdown === item.name && (
+                  <div className="absolute top-full left-0 w-48 bg-card border border-border rounded-lg shadow-lg py-2 mt-1">
+                    {item.dropdown.map((subItem) => (
+                      <a
+                        key={subItem.name}
+                        href={subItem.href}
+                        className="block px-4 py-2 text-sm text-foreground hover:bg-muted hover:text-primary transition-colors duration-200"
+                      >
+                        {subItem.name}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </nav>
+
+          {/* Apply Now Button */}
+          <div className="hidden lg:block">
+            <Button className="bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity">
+              Apply Now
+            </Button>
+          </div>
+
+          {/* Mobile menu button */}
+          <div className="lg:hidden">
+            <Button
+              variant="ghost"
+              onClick={() => setIsOpen(!isOpen)}
+              className="p-2"
+            >
+              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            </Button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation */}
+        {isOpen && (
+          <div className="lg:hidden">
+            <div className="px-2 pt-2 pb-3 space-y-1 bg-card border border-border rounded-lg mt-2 mb-4">
+              {navigation.map((item) => (
+                <div key={item.name}>
+                  <a
+                    href={item.href}
+                    className="block px-3 py-2 text-foreground hover:text-primary hover:bg-muted rounded-md transition-colors duration-200"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.name}
+                  </a>
+                  {item.dropdown && (
+                    <div className="ml-4 space-y-1">
+                      {item.dropdown.map((subItem) => (
+                        <a
+                          key={subItem.name}
+                          href={subItem.href}
+                          className="block px-3 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-muted rounded-md transition-colors duration-200"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          {subItem.name}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+              <div className="px-3 pt-2">
+                <Button className="w-full bg-gradient-to-r from-primary to-accent">
+                  Apply Now
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </header>
+  );
+};
+
+export default Header;
