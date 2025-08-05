@@ -1,35 +1,37 @@
 import { useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   const navigation = [
-    { name: "Home", href: "#home" },
+    { name: "Home", href: "/" },
     {
       name: "About",
-      href: "#about",
+      href: "/about",
       dropdown: [
-        { name: "Our Story", href: "#story" },
-        { name: "Mission & Vision", href: "#mission" },
-        { name: "Leadership", href: "#leadership" },
+        { name: "Our Story", href: "/about#story" },
+        { name: "Mission & Vision", href: "/about#mission" },
+        { name: "Leadership", href: "/about#leadership" },
       ],
     },
     {
       name: "Courses",
-      href: "#courses",
+      href: "/courses",
       dropdown: [
-        { name: "General Nursing", href: "#general-nursing" },
-        { name: "BSN Program", href: "#bsn" },
-        { name: "Post-RN BSN", href: "#post-rn" },
+        { name: "General Nursing", href: "/courses#general-nursing" },
+        { name: "BSN Program", href: "/courses#bsn" },
+        { name: "Post-RN BSN", href: "/courses#post-rn" },
       ],
     },
-    { name: "Faculty", href: "#faculty" },
-    { name: "Campus Life", href: "#campus" },
-    { name: "Admissions", href: "#admissions" },
-    { name: "Contact", href: "#contact" },
+    { name: "Faculty", href: "/faculty" },
+    { name: "Campus Life", href: "/campus-life" },
+    { name: "Admissions", href: "/admissions" },
+    { name: "Blog", href: "/blog" },
+    { name: "Contact", href: "/contact" },
   ];
 
   return (
@@ -37,7 +39,7 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div className="flex items-center space-x-3">
+          <Link to="/" className="flex items-center space-x-3">
             <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center">
               <span className="text-primary-foreground font-bold text-lg">CNS</span>
             </div>
@@ -45,7 +47,7 @@ const Header = () => {
               <h1 className="text-xl font-bold text-primary">College of Nursing</h1>
               <p className="text-sm text-muted-foreground">Sargodha</p>
             </div>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-8">
@@ -56,13 +58,13 @@ const Header = () => {
                 onMouseEnter={() => item.dropdown && setActiveDropdown(item.name)}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
-                <a
-                  href={item.href}
+                <Link
+                  to={item.href}
                   className="flex items-center space-x-1 text-foreground hover:text-primary transition-colors duration-200 py-2"
                 >
                   <span>{item.name}</span>
                   {item.dropdown && <ChevronDown className="w-4 h-4" />}
-                </a>
+                </Link>
                 
                 {item.dropdown && activeDropdown === item.name && (
                   <div className="absolute top-full left-0 w-48 bg-card border border-border rounded-lg shadow-lg py-2 mt-1">
@@ -83,9 +85,11 @@ const Header = () => {
 
           {/* Apply Now Button */}
           <div className="hidden lg:block">
-            <Button className="bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity">
-              Apply Now
-            </Button>
+            <Link to="/admissions">
+              <Button className="bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity">
+                Apply Now
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -106,13 +110,13 @@ const Header = () => {
             <div className="px-2 pt-2 pb-3 space-y-1 bg-card border border-border rounded-lg mt-2 mb-4">
               {navigation.map((item) => (
                 <div key={item.name}>
-                  <a
-                    href={item.href}
+                  <Link
+                    to={item.href}
                     className="block px-3 py-2 text-foreground hover:text-primary hover:bg-muted rounded-md transition-colors duration-200"
                     onClick={() => setIsOpen(false)}
                   >
                     {item.name}
-                  </a>
+                  </Link>
                   {item.dropdown && (
                     <div className="ml-4 space-y-1">
                       {item.dropdown.map((subItem) => (
@@ -130,9 +134,11 @@ const Header = () => {
                 </div>
               ))}
               <div className="px-3 pt-2">
-                <Button className="w-full bg-gradient-to-r from-primary to-accent">
-                  Apply Now
-                </Button>
+                <Link to="/admissions" onClick={() => setIsOpen(false)}>
+                  <Button className="w-full bg-gradient-to-r from-primary to-accent">
+                    Apply Now
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
