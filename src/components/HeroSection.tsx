@@ -1,6 +1,7 @@
 import { ArrowRight, Award, Users, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Link } from "react-router-dom";
 import campusHero from "@/assets/campus-hero.jpg";
 
 const HeroSection = () => {
@@ -45,19 +46,23 @@ const HeroSection = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
-              <Button 
-                size="lg" 
-                className="bg-white text-primary hover:bg-white/90 transition-all duration-300 transform hover:scale-105"
-              >
-                Apply Now <ArrowRight className="ml-2 w-5 h-5" />
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="border-white text-white hover:bg-white hover:text-primary transition-all duration-300"
-              >
-                Virtual Campus Tour
-              </Button>
+              <Link to="/admissions">
+                <Button 
+                  size="lg" 
+                  className="bg-white text-primary hover:bg-white/90 transition-all duration-300 transform hover:scale-105 w-full sm:w-auto"
+                >
+                  Apply Now <ArrowRight className="ml-2 w-5 h-5" />
+                </Button>
+              </Link>
+              <Link to="/campus-life">
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  className="border-white text-white hover:bg-white hover:text-primary transition-all duration-300 w-full sm:w-auto"
+                >
+                  Virtual Campus Tour
+                </Button>
+              </Link>
             </div>
 
             {/* Stats */}
@@ -84,33 +89,41 @@ const HeroSection = () => {
               <h3 className="text-2xl font-bold text-primary mb-6">Quick Access</h3>
               
               <div className="space-y-4">
-                <Button variant="outline" className="w-full justify-start text-left h-auto p-4">
-                  <div>
-                    <div className="font-semibold">📚 Course Information</div>
-                    <div className="text-sm text-muted-foreground">Browse our nursing programs</div>
-                  </div>
-                </Button>
+                <Link to="/courses">
+                  <Button variant="outline" className="w-full justify-start text-left h-auto p-4 hover:bg-primary/5">
+                    <div>
+                      <div className="font-semibold">📚 Course Information</div>
+                      <div className="text-sm text-muted-foreground">Browse our nursing programs</div>
+                    </div>
+                  </Button>
+                </Link>
                 
-                <Button variant="outline" className="w-full justify-start text-left h-auto p-4">
-                  <div>
-                    <div className="font-semibold">💰 Fee Structure</div>
-                    <div className="text-sm text-muted-foreground">View fees and scholarships</div>
-                  </div>
-                </Button>
+                <Link to="/admissions">
+                  <Button variant="outline" className="w-full justify-start text-left h-auto p-4 hover:bg-primary/5">
+                    <div>
+                      <div className="font-semibold">💰 Fee Structure</div>
+                      <div className="text-sm text-muted-foreground">View fees and scholarships</div>
+                    </div>
+                  </Button>
+                </Link>
                 
-                <Button variant="outline" className="w-full justify-start text-left h-auto p-4">
-                  <div>
-                    <div className="font-semibold">📅 Important Dates</div>
-                    <div className="text-sm text-muted-foreground">Admission deadlines</div>
-                  </div>
-                </Button>
+                <Link to="/admissions">
+                  <Button variant="outline" className="w-full justify-start text-left h-auto p-4 hover:bg-primary/5">
+                    <div>
+                      <div className="font-semibold">📅 Important Dates</div>
+                      <div className="text-sm text-muted-foreground">Admission deadlines</div>
+                    </div>
+                  </Button>
+                </Link>
                 
-                <Button variant="outline" className="w-full justify-start text-left h-auto p-4">
-                  <div>
-                    <div className="font-semibold">📞 Contact Admissions</div>
-                    <div className="text-sm text-muted-foreground">Get personalized guidance</div>
-                  </div>
-                </Button>
+                <Link to="/contact">
+                  <Button variant="outline" className="w-full justify-start text-left h-auto p-4 hover:bg-primary/5">
+                    <div>
+                      <div className="font-semibold">📞 Contact Admissions</div>
+                      <div className="text-sm text-muted-foreground">Get personalized guidance</div>
+                    </div>
+                  </Button>
+                </Link>
               </div>
 
               <div className="mt-6 p-4 bg-primary/5 rounded-lg">
@@ -118,9 +131,11 @@ const HeroSection = () => {
                 <p className="text-sm text-muted-foreground mb-3">
                   Our admission counselors are here to guide you through the process.
                 </p>
-                <Button size="sm" className="w-full">
-                  Schedule a Consultation
-                </Button>
+                <Link to="/contact">
+                  <Button size="sm" className="w-full">
+                    Schedule a Consultation
+                  </Button>
+                </Link>
               </div>
             </Card>
           </div>

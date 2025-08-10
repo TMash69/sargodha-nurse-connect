@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import ThemeToggle from "./ThemeToggle";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -83,8 +84,9 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Apply Now Button */}
-          <div className="hidden lg:block">
+          {/* Theme Toggle and Apply Now Button */}
+          <div className="hidden lg:flex items-center space-x-3">
+            <ThemeToggle />
             <Link to="/admissions">
               <Button className="bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity">
                 Apply Now
@@ -133,7 +135,11 @@ const Header = () => {
                   )}
                 </div>
               ))}
-              <div className="px-3 pt-2">
+              <div className="px-3 pt-2 space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium text-foreground">Theme</span>
+                  <ThemeToggle />
+                </div>
                 <Link to="/admissions" onClick={() => setIsOpen(false)}>
                   <Button className="w-full bg-gradient-to-r from-primary to-accent">
                     Apply Now
