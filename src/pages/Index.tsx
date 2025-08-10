@@ -67,7 +67,7 @@ const Index = () => {
       <HeroSection />
       
       {/* Quick Access Section */}
-      <section className="py-20 bg-gradient-to-br from-muted/30 to-muted/10">
+      <section className="py-20 bg-gradient-to-br from-muted/30 to-muted/10 dark:from-background dark:to-muted/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="inline-flex items-center px-4 py-2 bg-primary/10 rounded-full text-primary font-medium mb-4">
@@ -84,7 +84,7 @@ const Index = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
             {quickAccess.map((item, index) => (
               <Link key={index} to={item.href}>
-                <Card className="group hover:shadow-xl hover:shadow-primary/10 transition-all duration-500 cursor-pointer h-full border-0 bg-gradient-to-br from-background to-muted/30">
+                <Card className="group hover:shadow-xl hover:shadow-primary/10 dark:hover:shadow-primary/20 transition-all duration-500 cursor-pointer h-full border-0 bg-gradient-to-br from-background to-muted/30 dark:from-card dark:to-muted/10">
                   <div className="p-6 text-center">
                     <div className={`w-16 h-16 bg-gradient-to-br ${item.gradient} rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300 shadow-lg`}>
                       <item.icon className="w-8 h-8 text-white" />
@@ -115,7 +115,7 @@ const Index = () => {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {features.map((feature, index) => (
-              <Card key={index} className="p-6 text-center hover:shadow-lg transition-all duration-300 border-0 bg-gradient-to-b from-background to-primary/5">
+              <Card key={index} className="p-6 text-center hover:shadow-lg transition-all duration-300 border-0 bg-gradient-to-b from-background to-primary/5 dark:from-card dark:to-primary/10">
                 <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center mx-auto mb-4">
                   <feature.icon className="w-6 h-6 text-white" />
                 </div>
