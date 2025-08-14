@@ -58,7 +58,7 @@ const HeroSection = () => {
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="border-white text-white hover:bg-white hover:text-primary dark:border-primary dark:text-primary dark:hover:bg-primary dark:hover:text-primary-foreground transition-all duration-300 w-full sm:w-auto"
+                  className="border-white/80 bg-white/10 text-white backdrop-blur-sm hover:bg-white hover:text-primary dark:border-primary/60 dark:bg-primary/10 dark:text-primary dark:hover:bg-primary dark:hover:text-primary-foreground transition-all duration-300 w-full sm:w-auto"
                 >
                   Virtual Campus Tour
                 </Button>
